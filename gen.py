@@ -5,4 +5,7 @@ def makeQR(name,msg):
     img.save(name)
 
 
-makeQR('myQR.png','Hello, World!')
+name = input('Enter filename of the QR code: ')
+content = input('Enter the content of the QR code: ')
+
+makeQR(name,content)
