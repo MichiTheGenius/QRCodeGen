@@ -8,7 +8,7 @@ class Generator():
         self.parser.add_argument(
             'name', type=str, help='name of output QR code')
         self.parser.add_argument(
-            'content', type=str, help='content of QR code')
+            'file', type=str, help='input txt file')
         self.args = self.parser.parse_args()
 
     def makeQR(self, name, msg):
@@ -16,7 +16,12 @@ class Generator():
         img.save(name)
 
     def generate(self):
-        self.makeQR(self.args.name, self.args.content)
+        file_content = self.get_content_from_file(self.args.file)
+        self.makeQR(self.args.name, file_content)
+
+    def get_content_from_file(self, file):
+        with open(file) as f:
+            return f.read()
 
 generator = Generator()
 
